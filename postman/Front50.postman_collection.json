@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "03488cc6-541b-43ba-baeb-cfd140c4f754",
+		"name": "Front50",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6978248"
+	},
+	"item": [
+		{
+			"name": "api-docs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/v2/api-docs",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v2",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-app",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cloudProviders\": \"cloudProvider\",\n    \"createTs\": \"{{$timestamp}}\",\n    \"createdAt\": {{$timestamp}},\n    \"description\": \"desc\",\n    \"email\": \"email\",\n    \"lastModifiedBy\": \"postman\",\n    \"name\": \"application-1\",\n    \"trafficGuards\": [\n        {\n            \"account\": \"account\",\n            \"detail\": \"detail\",\n            \"enabled\": true,\n            \"location\": \"BR\",\n            \"stack\": \"stack\"\n        }\n    ],\n    \"updateTs\": \"{{$timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/v2/applications",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v2",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "one-app",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/v2/applications/:id",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"v2",
+						"applications",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "application-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-pipeline",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"configId-1\",\n    \"application\": \"application-1\",\n    \"config\": {},\n    \"constraints\": {},\n    \"createdAt\": {{$timestamp}},\n    \"disabled\": false,\n    \"email\": \"email\",\n    \"executionEngine\": \"string\",\n    \"keepWaitingPipelines\": true,\n    \"lastModifiedBy\": \"postman\",\n    \"limitConcurrent\": true,\n    \"maxConcurrentExecutions\": 0,\n    \"name\": \"pipeline-{{$randomInt}}\",\n    \"parameterConfig\": [\n        {\n            \"additionalProp1\": {},\n            \"additionalProp2\": {},\n            \"additionalProp3\": {}\n        }\n    ],\n    \"payloadConstraints\": {},\n    \"roles\": [\n        \"string\"\n    ],\n    \"schema\": \"schema\",\n    \"serviceAccount\": \"spinnaker\",\n    \"spelEvaluator\": \"string\",\n    \"stageCounter\": 0,\n    \"stages\": [\n        {\n            \"additionalProp1\": {},\n            \"additionalProp2\": {},\n            \"additionalProp3\": {}\n        }\n    ],\n    \"template\": {},\n    \"triggers\": [\n        {\n            \"additionalProp1\": {},\n            \"additionalProp2\": {},\n            \"additionalProp3\": {}\n        }\n    ],\n    \"type\": \"manual\",\n    \"updateTs\": \"{{$timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/pipelines?staleCheck=false",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"pipelines"
+					],
+					"query": [
+						{
+							"key": "staleCheck",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "one-pipeline",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/pipelines/:id/get",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"pipelines",
+						":id",
+						"get"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "configId-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list-pipelines",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/pipelines?refresh=true&restricted=false",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"pipelines"
+					],
+					"query": [
+						{
+							"key": "refresh",
+							"value": "true"
+						},
+						{
+							"key": "restricted",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
