@@ -6,6 +6,37 @@ management:
     redis:
       enabled: ${spinnaker.redis.enabled}
 
+sql:
+  enabled: true
+  cache:
+    enabled: true
+  connectionPools:
+    default:
+      # additional connection pool parameters are available here,
+      # for more detail and to view defaults, see:
+      # https://github.com/spinnaker/kork/blob/master/kork-sql/src/main/kotlin/com/netflix/spinnaker/kork/sql/config/ConnectionPoolProperties.kt
+      default: true
+      jdbcUrl: jdbc:mysql://mysql1:3306/front50?useSSL=false&useUnicode=true&characterEncoding=utf8
+      #jdbcUrl: jdbc:mysql://127.0.0.1:3306/front50?useSSL=false&useUnicode=true&characterEncoding=utf8
+      user: front50
+      password: front50
+      # password: depending on db auth and how spinnaker secrets are managed
+  migration:
+    user: front50
+    password: front50
+    jdbcUrl: jdbc:mysql://mysql1:3306/front50?useSSL=false&useUnicode=true&characterEncoding=utf8
+    #jdbcUrl: jdbc:mysql://127.0.0.1:3306/front50?useSSL=false&useUnicode=true&characterEncoding=utf8
+
+spectator:
+  applicationName: ${spring.application.name}
+  webEndpoint:
+    enabled: true
+
+services:
+  fiat:
+    enabled: false
+    baseUrl: http://localhost:7003
+
 spinnaker:
   redis:
     enabled: false
@@ -18,6 +49,58 @@ swagger:
   description:
   contact:
   patterns:
+    - .*tasks.*
+    - .*auth.*
+    - .*applications.*
+    - .*securityGroups.*
+    - /search
+    - .*pipeline.*
+    - .*pipelineConfigs.*
+    - .*pipelines.*
+    - .*loadBalancers.*
+    - .*instances.*
+    - .*images.*
+    - .*elasticIps.*
+    - .*credentials.*
+    - .*events.*
+    - .*builds.*
+    - .*instanceTypes.*
+    - .*vpcs.*
+    - .*subnets.*
+    - .*networks.*
+    - .*bakery.*
+    - .*executions.*
+    - .*webhooks.*
+    - .*firewalls.*
+    - .*version.*
+    - .*pubsub.*
+    - .*projects.*
+    - .*functions.*
+    - .*managed.*
+    - .*plugins.*
+    - .*elasticIps.*
+    - .*cache.*
+    - .*instance.*
+    - .*search.*
+    - .*security.*
+    - .*vpcs.*
+    - .*credentials.*
+    - .*networks.*
+    - .*subnets.*
+    - .*ops.*
+    - .*task.*
+    - .*applications.*
+    - .*aws.*
+    - .*azure.*
+    - .*appengine.*
+    - .*gce.*
+    - .*kubernetes.*
+    - .*instances.*
+    - .*reports.*
+    - .*docker.*
+    - .*job.*
+    - .*process.*
+    - .*dcos.*
     - /default/.*
     - /credentials.*
     - /global/.*
